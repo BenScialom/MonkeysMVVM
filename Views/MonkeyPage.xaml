@@ -2,15 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MonkeysMVVM.Views.MonkeyPage"
+             xmlns:viewmodel="clr-namespace:MonkeysMVVM.ViewModels"
+             x:DataType="viewmodel:MonkeyPageViewModel"
              Title="MonkeyPage">
-    <Entry
-         x:Name="entry"
-        Placeholder="Location"
-        >
-        
-    </Entry>
-    <Button
-        x:Name="btn1"
-        Text="Get Monkeys"
-        Command=""/>
+    <VerticalStackLayout>
+        <Entry Placeholder="הכנס שם מדינה " PlaceholderColor="Moccasin"
+               Text="{Binding Country }"/>
+        <Button Text="חפש" WidthRequest="150" Command="{Binding SearchByCountryCommand}"/>
+        <Label >
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="מספר הקופים שנמצאו " FontAttributes="Bold"/>
+                    <Span Text="{Binding Count}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label Text="{Binding Name}"/>
+        <Border HeightRequest="200">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="100"></RoundRectangle>
+            </Border.StrokeShape>
+            <Image Source="{Binding ImageUrl}"/>
+        </Border>
+    </VerticalStackLayout>
 </ContentPage>
