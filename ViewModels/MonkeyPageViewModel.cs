@@ -16,7 +16,7 @@ namespace MonkeysMVVM.ViewModels
         public MonkeyPageViewModel()
         {
             monkey = new Monkey() { Name = "No Monkeys right now" };
-            SearchByCountryCommand = new Command(FindMonkeys,()=>Country!=null);
+            SearchByCountryCommand = new Command(FindMonkeys,()=>Country!=null&&Country!=string.Empty);
         }
 
         private void FindMonkeys()
