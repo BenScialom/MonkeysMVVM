@@ -1,5 +1,6 @@
 ﻿using MonkeysMVVM.Models;
 using System.Windows.Input;
+using MonkeysMVVM.Services;
 
 namespace MonkeysMVVM.ViewModels
 {
@@ -21,7 +22,21 @@ namespace MonkeysMVVM.ViewModels
 
         private void FindMonkeys()
         {
-           
+            MonkeysService service =new MonkeysService();
+            List<Monkey> lst= service.FindMonkeysByLocation(Country);
+            if (lst.Count > 0)
+                monkey = lst[0];
+            else
+                monkey = new Monkey() { Name = "No monkeys right now" };
+            Count = lst.Count();
+            RefreshData();
+            Country = null;
+        }
+
+        private void RefreshData()
+        {
+            OnPropertyChanged("Name");
+            OnPropertyChanged(nameof(ImageUrl));
         }
     }
 }
